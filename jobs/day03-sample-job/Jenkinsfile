@@ -6,14 +6,14 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'jenkins_practice_test', variable: 'TOKEN')]){
                     withCredentials([string(credentialsId: 'jenkins_practice_test_notification_group', variable: 'GROUP_ID')]){
-						sh '''
-							command=$(curl -o /dev/null -s -w %{http_code} www.example.com)
+			sh '''
+			   command=$(curl -o /dev/null -s -w %{http_code} www.example.com)
                             
-                            if [ "${command}" != "200" ]; then
-                            message="www.example.com response code != 200."
-                            curl -X GET "https://api.telegram.org/bot${TOKEN}/sendMessage" \
+                           if [ "${command}" != "200" ]; then
+                           message="www.example.com response code != 200."
+                           curl -X GET "https://api.telegram.org/bot${TOKEN}/sendMessage" \
                                 -d "chat_id=${GROUP_ID}&text=${message}"
-                            fi                
+                           fi                
                         '''
                     }
                 }
