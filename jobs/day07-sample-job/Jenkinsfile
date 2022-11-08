@@ -1,4 +1,4 @@
-@library('jenkins_practice_utils') 
+library('jenkins_practice_utils') 
 
 pipeline {
     agent any
